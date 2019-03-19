@@ -1,0 +1,35 @@
+✔Prueba: 0001 Calculado: 4.6667 Esperado: 4.6667 Tiempo 0.066395 ms
+✔Prueba: 0002 Calculado: 3 Esperado: 3.0000 Tiempo 0.017212 ms
+✔Prueba: 0003 Calculado: 10.5 Esperado: 10.5000 Tiempo 0.004668 ms
+✔Prueba: 0004 Calculado: 5.6569 Esperado: 5.6569 Tiempo 0.090599 ms
+✔Prueba: 0005 Calculado: 0 Esperado: 0.0000 Tiempo 0.004889 ms
+✔Prueba: 0006 Calculado: 4 Esperado: 4.0000 Tiempo 0.007514 ms
+✖Prueba: 0007 Calculado: Exception Esperado: 3.4286 Tiempo 0 ms
+Error
+        
+		Codigo: 0
+        
+		Mensaje: No implementado
+✖Prueba: 0008 Calculado: Exception Esperado: 3.0000 Tiempo 0 ms
+Error
+        
+		Codigo: 0
+        
+		Mensaje: No implementado
+✔Prueba: 0009 Calculado: 5.5 Esperado: 5.5 Tiempo 0.004759 ms
+✔Prueba: 0010 Calculado: Exception Esperado: Exception Tiempo 0 ms
+Error
+        
+		Codigo: 0
+        
+		Mensaje: Valores no validos
+✔Prueba: 0011 Calculado: 0 Esperado: 0.0000 Tiempo 0.000822 ms
+✔Prueba: 0012 Calculado: 0 Esperado: 0.0000 Tiempo 0.000681 ms
+✔Prueba: 0014 Calculado: Exception Esperado: Exception Tiempo 0 ms
+Error
+        
+		Codigo: 0
+        
+		Mensaje: Cannot read property 'every' of undefined
+✔Prueba: 0015 Calculado: -2.75 Esperado: -2.75 Tiempo 0.003086 ms
+Exitosas(✔) 12	Fallidas(✖) 2	 Omitidas 1 [1, 0]	

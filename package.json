@@ -1,0 +1,19 @@
+{
+  "name": "automatizar-pruebas-unitarias-2019-sorielv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihclab/automatizar-pruebas-unitarias-2019-SorielV.git"
+  },
+  "author": "SorielV <xxsorielxx@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ihclab/automatizar-pruebas-unitarias-2019-SorielV/issues"
+  },
+  "homepage": "https://github.com/ihclab/automatizar-pruebas-unitarias-2019-SorielV#readme"
+}
