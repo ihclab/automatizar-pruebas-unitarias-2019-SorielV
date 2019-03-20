@@ -23,6 +23,20 @@ module.exports = {
     return (await readFile(file, 'utf-8'))
       .split(line_separator)
       // .filter(line => !line || line.trim())
-      .reduce((data, line, lineNumber) => {}, [])
+      .reduce((data, line, lineNumber) => {
+        if (!line.trim()) {
+          console.log(`Linea ${lineNumber} Omitida`)
+          return data
+        }
+        const args = line.split(field_separator)
+        if (args.length !== 4 || args.some(isEmptyEl)) {
+          console.log(`Linea ${lineNumber} Omitida`)
+          return data
+        }
+
+        const [id, method, raw_args, expected] = args
+        data.push([id, method, raw_args.split(args_separator), expected])
+        return data
+      }, [])
   }
 }
