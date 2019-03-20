@@ -38,5 +38,6 @@ module.exports = {
         data.push([id, method, raw_args.split(args_separator), expected])
         return data
       }, [])
-  }
+  },
+  exportData: (path, data) => writeFile(Path.resolve(path, `./ResultadosPrueba${Date.now()}.txt`) , data)
 }
