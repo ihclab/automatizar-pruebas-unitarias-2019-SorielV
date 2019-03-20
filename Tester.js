@@ -37,6 +37,40 @@ class TestCase {
       this.obtained == this.excepted || (this.excepted === 'Exception' && (this.errorMessage || this.errorCode))
       
   }
+
+  getResult() {
+    if (!this.tested) return {}
+
+    return {
+      id: this.id,
+      method: this.methodName,
+      excepted: this.excepted,
+      obtained: this.obtained,
+      time: this.time,
+      result: this.result,
+    }
+  }
+
+  getPlainResult() {
+    let result =
+      (this.result ? '✔' : '✖') +
+      `Prueba: ${this.id} Calculado: ${this.obtained} Esperado: ${this.excepted} Tiempo ${this.time} ms`
+
+    if (this.excepted === 'Exception' || (this.errorMessage || this.errorCode)) {
+      result += `\nError
+        \r\t\tCodigo: ${this.errorCode}
+        \r\t\tMensaje: ${this.errorMessage}`
+    }
+
+    return result
+  }
+
+  printResult() {
+    if (!this.tested) return ''
+    // 1 red 2 green
+    console.log(`\x1b[3${this.result + 1}m`, this.getPlainResult(), "\x1b[0m")
+    return
+  }
 }
 
 class Tester {
@@ -80,6 +114,45 @@ class Tester {
       return 
     }
     this.testCases.forEach(testCase => testCase.run())
+  }
+
+  printResults () {
+    const result = [0,0]
+    let notTested = 0
+    this.testCases.forEach(testCase => {
+      if (!testCase.tested) {
+        notTested++
+        return
+      }
+      testCase.printResult()
+      result[Number(testCase.result)]++
+    })
+
+    console.log(
+      `Exitosas(✔) ${result[1]}\tFallidas(✖) ${result[0]}\t Omitidas ${
+        this.omited + notTested
+      } [${this.omited}, ${notTested}]\t`
+    )
+  }
+
+  getResults() {
+    let sresult = ''
+    const result = [0,0]
+    let notTested = 0
+    this.testCases.forEach(testCase => {
+      if (!testCase.tested) {
+        notTested++
+        return
+      }
+      result[Number(testCase.result)]++
+      sresult += testCase.getPlainResult() + '\n'
+    })
+
+    sresult += `Exitosas(✔) ${result[1]}\tFallidas(✖) ${result[0]}\t Omitidas ${
+      this.omited + notTested
+      } [${this.omited}, ${notTested}]\t`
+
+    return sresult
   }
 }
 
