@@ -1,4 +1,3 @@
-// Sync
 class TestCase {
   constructor(id, method, args, excepted) {
     // base
@@ -30,7 +29,11 @@ class TestCase {
       this.obtained = 'Exception'
       this.errorMessage = err.message 
       this.errorCode = err.code || 0
-    }  
+    }
+
+    this.result =
+      this.obtained == this.excepted || (this.excepted === 'Exception' && (this.errorMessage || this.errorCode))
+      
   }
 
   getResult() {
@@ -48,7 +51,7 @@ class TestCase {
 
   getPlainResult() {
     let result =
-      (this.result ? '✔ Exito' : '✖ Fallo') +
+      (this.result ? '✔' : '✖') +
       `Prueba: ${this.id} Calculado: ${this.obtained} Esperado: ${this.excepted} Tiempo ${this.time} ms`
 
     if (this.excepted === 'Exception' || (this.errorMessage || this.errorCode)) {
@@ -93,7 +96,7 @@ class Tester {
           console.log(`Prueba Id: ${id} omitida => ${err.message}`)  
         }
       }
-
+      
       if (!this.Methods.hasOwnProperty(method)) {
         console.log(`Prueba Id: ${id} omitida => Funcion no encontrado`)
         this.omited++
@@ -101,7 +104,7 @@ class Tester {
       }
       this.testCases.push(new TestCase(id, this.Methods[method], _args, excepted))
     })
-  }
+  }  
 
   runTest() {
     // TODO: Error log

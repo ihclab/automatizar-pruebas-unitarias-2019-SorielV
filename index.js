@@ -58,8 +58,9 @@ const Test = async (testFile, Methods, Validators) => {
 
   if (exportResults) {
     await exportData(exportPath, test.getResults())
-    console.log('Archivo generado')
+    return 'Archivo generado'
   }
+  return 'Proceso finalizado'
 }
 
 Test('./CasosPrueba.txt', Methods, Validators)
