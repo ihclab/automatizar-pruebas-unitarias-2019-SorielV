@@ -4,8 +4,15 @@ const {
   exportData
 } = require('./utils')
 
-const Methods = require('./Medias')
+// TODO: Add examples
+// TODO: Lint, Prettier
 
+const Path = require('path')
+const exportResults = process.env.EXPORT_RESULTS || false
+const exportPath = process.env.EXPORT_PATH || process.env.PWD
+
+const Methods = require('./Medias')
+const Tester = require('./Tester')
 const Validators = {
   mediaAritmetica(args) {
     if (args.some(arg => isNaN(arg))) {
@@ -41,3 +48,20 @@ const Validators = {
     return args.map(arg => Number(arg))
   }
 }
+
+const Test = async (testFile, Methods, Validators) => {
+  const data = await importData(testFile)
+  const test = new Tester(Methods, Validators)
+  test.createTestsFromData(data)
+  test.runTest()
+  test.printResults()
+
+  if (exportResults) {
+    await exportData(exportPath, test.getResults())
+    console.log('Archivo generado')
+  }
+}
+
+Test('./CasosPrueba.txt', Methods, Validators)
+  .then(console.log)
+  .catch(console.error)
