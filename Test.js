@@ -22,8 +22,10 @@ class TestCase {
   run() {
     this.tested = true
     try {
+      const startTime = process.hrtime()
       const result = this.method(this.args)
       this.obtained = result
+      this.time = process.hrtime(startTime)[1] / 1e6
     } catch(err) {
       this.obtained = 'Exception'
       this.errorMessage = err.message 
@@ -46,7 +48,7 @@ class TestCase {
 
   getPlainResult() {
     let result =
-      (this.result ? '✔' : '✖') +
+      (this.result ? '✔ Exito' : '✖ Fallo') +
       `Prueba: ${this.id} Calculado: ${this.obtained} Esperado: ${this.excepted} Tiempo ${this.time} ms`
 
     if (this.excepted === 'Exception' || (this.errorMessage || this.errorCode)) {
